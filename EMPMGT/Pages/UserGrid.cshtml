@@ -1,0 +1,96 @@
+﻿@page
+@model EMPMGT.Pages.UserGridModel
+@{
+    var token = antiforgery.GetAndStoreTokens(HttpContext).RequestToken;
+}
+
+<h1 class="h3 mb-2 text-gray-800">User Grid</h1>
+<p class="mb-5">You can manage all user and performe action like Add, Edit, Delete. </p>
+ <div class="page-header">
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-12">
+							<h5 class="text-uppercase mb-0 mt-0 page-title">&nbsp;</h5>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6 col-12">
+							<ul class="breadcrumb float-right p-0 mb-0">
+								<li class="breadcrumb-item"><a href="/Index"><I class="fas fa-home"></i> Home</a></li>
+					
+								<li class="breadcrumb-item"><span> User List &nbsp;</span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+<div class="content-page">
+    <div class="card">
+        <div class="card-body">
+            <div class="row filter-row mb-4">
+       
+        <div class="col-sm-6 col-md-3">
+            <div class="form-group form-focus">
+                <input type="text" id="txtC1" class="form-control floating" placeholder="Email">
+
+               
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="form-group form-focus">
+                
+                 @Html.DropDownList("ddlStatus", new List<SelectListItem>
+                            {
+                            new SelectListItem{ Text="Select Status", Value = "" },
+                new SelectListItem{ Text="Active", Value = "True" },
+                new SelectListItem{ Text="In-Active", Value = "False" },
+
+                }, htmlAttributes: new { @class = "form-control js-example-basic-single", id = "ddlStatus"})
+               
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-1">
+            <a href="#" class="btn btn-primary rounded btn-block mb-3" id="btnExternalSearch"> Search </a>
+
+        </div>
+        <div class="col-sm-6 col-md-1">
+            <a href="#" class="btn btn-warning rounded btn-block mb-3" id="btnResetSearch"> Reset </a>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mb-3">
+            <div class="">
+
+                <JRH-DataGrid-Html id="Jrockhub_User"
+                                   class="table"
+                                   model="@Model.m"
+                                   thead-class="text-center"
+                                   enable-searching="true"
+                                   search-row-th-class="p-0"
+                                   search-input-class="form-control"
+                                   search-input-style="
+padding: 10px 50px 10px 15px;text-align: center;"
+                                   search-input-placeholder-prefix="Search"
+                                   use-property-type-as-input-type="false">
+                </JRH-DataGrid-Html>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="form-group text-right back-to-top">
+                <button id="btnAddUser" title="Add User" onclick="location.href='/UserAdd'" data-bs-toggle="tooltip" data-bs-placement="top" type="button" class="btn btn-success btn-circle btn-lg" role="button">
+                    <i class="fa fa-plus"></i>
+                </button>
+
+            </div>
+        </div>
+        <!-- / .col-md-5 -->
+    </div>
+        </div>
+    </div>
+</div>
+<script src="~/pagescripts/datagrid-User.js"></script>
+<script>
+    
+    let token = '@token';
+
+</script>
