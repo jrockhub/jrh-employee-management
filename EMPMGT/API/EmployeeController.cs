@@ -44,14 +44,14 @@ namespace EMPMGT.API
                 }
                 else
                 {
-                    return Ok(new ApiResponse<EmployeeRequestModel> { ResponseCode = ResponseCodeType.Error, Message = "Employee does not exists." });
+                    return Ok(new ApiResponse<EmployeeRequestModel> { ResponseCode = ResponseCodeType.Error, Message = "Records not found." });
                 }
 
             }
             catch (Exception e)
             {
 
-                return Ok(new ApiResponse<EmployeeRequestModel> { ResponseCode = ResponseCodeType.Error, Message = "Unable to get employee" });
+                return Ok(new ApiResponse<EmployeeRequestModel> { ResponseCode = ResponseCodeType.Error, Message = "Unable to get employee. Please try after some time." });
             }
         }
 
